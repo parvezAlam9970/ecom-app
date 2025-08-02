@@ -1,52 +1,52 @@
-import {View, Text, StyleSheet, Image} from 'react-native';
+import { View, Text, StyleSheet, Image } from 'react-native';
 import React from 'react';
-import {useNavigation} from '@react-navigation/native';
+import { useNavigation } from '@react-navigation/native';
 import CustomTouchableOpacity from './CustomTouchableOpacity ';
 
-export default function ProductCard({item}) {
+export default function ProductCard({ item }) {
   const navigation = useNavigation();
 
   return (
     <CustomTouchableOpacity
       activeOpacity={0.8}
       onPress={() =>
-        navigation.navigate('product-detail', {item, headerTitle: item.name})
+        navigation.navigate('product-detail', { item, headerTitle: item.name })
       }>
-      <View style={styles.productCard}>
-        <Image source={item.image} style={styles.productImage} />
-        <Text style={styles.productName}>{item.name}</Text>
-        <Text style={styles.productMrp}>
-          MRP: <Text style={styles.strike}>{item.mrp}</Text>
+      <View style={styles.card}>
+        <Image source={item.image} style={styles.image} resizeMode="contain" />
+
+        <Text style={styles.name} numberOfLines={2}>
+          {item.name}
         </Text>
-        <Text style={styles.productDiscount}>{item.discount}</Text>
-        <Text style={styles.productSale}>Sale: {item.sale}</Text>
-        <Text style={styles.productReviews}>
-          ⭐ {item.rating} ({item.reviews})
-        </Text>
+
+        <View style={styles.priceRow}>
+          <Text style={styles.salePrice}>₹{item.sale}</Text>
+          <Text style={styles.mrp}>₹{item.mrp}</Text>
+        </View>
+
+        <View style={styles.ratingRow}>
+          <Text style={styles.star}>⭐ {item.rating}</Text>
+          <Text style={styles.reviews}>({item.reviews})</Text>
+        </View>
       </View>
     </CustomTouchableOpacity>
   );
 }
 
 const styles = StyleSheet.create({
-  productCard: {
+  card: {
     backgroundColor: '#fff',
-    borderRadius: 12,
-    padding: 10,
-    marginHorizontal: 3,
-    width: 120,
-    alignItems: 'center',
-    elevation: 2,
-    shadowColor: '#000',
-    shadowOpacity: 0.08,
-    shadowOffset: {width: 0, height: 2},
-    shadowRadius: 4,
+    marginHorizontal: 5,
+    width: 170,
+
+
   },
-  productImage: {width: 60, height: 60, marginBottom: 6},
-  productName: {fontWeight: 'bold', fontSize: 14, marginBottom: 2},
-  productMrp: {fontSize: 11, color: '#888'},
-  strike: {textDecorationLine: 'line-through'},
-  productDiscount: {fontSize: 11, color: '#e53935', marginBottom: 2},
-  productSale: {fontSize: 13, color: '#4285F4', fontWeight: 'bold'},
-  productReviews: {fontSize: 11, color: '#888', marginTop: 2},
+  image: { width: '100%', height: 140, marginBottom: 8, borderRadius: 10 , backgroundColor : "#e7edf4" ,  objectFit : "fill" },
+  name: { fontWeight: '600', fontSize: 14, marginBottom: 5, color: '#000' },
+  priceRow: { flexDirection: 'row', alignItems: 'center', marginBottom: 4 },
+  salePrice: { fontSize: 14, fontWeight: 'bold', color: '#4285F4', marginRight: 6 },
+  mrp: { fontSize: 12, color: '#888', textDecorationLine: 'line-through' },
+  ratingRow: { flexDirection: 'row', alignItems: 'center' },
+  star: { fontSize: 12, color: '#ffa000', marginRight: 4 },
+  reviews: { fontSize: 11, color: '#888' },
 });

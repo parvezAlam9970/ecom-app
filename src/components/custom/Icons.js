@@ -10,6 +10,8 @@ import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import SimpleLineIcons from 'react-native-vector-icons/SimpleLineIcons';
 import Octicons from 'react-native-vector-icons/Octicons';
 import Foundation from 'react-native-vector-icons/Foundation';
+import Search from 'react-native-vector-icons/SimpleLineIcons';
+
 export const Icons = {
     MaterialCommunityIcons,
     MaterialIcons,
@@ -22,6 +24,7 @@ export const Icons = {
     SimpleLineIcons,
     Octicons,
     Foundation,
+    Search
 }
 const Icon = ({type, name, color, size=24, style}) => {
     const fontSize = 24;

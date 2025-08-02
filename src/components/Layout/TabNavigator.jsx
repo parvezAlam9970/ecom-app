@@ -9,19 +9,12 @@ import OrderScreen from '../../../src/screen/OrderScreen';
 import ProfileScreen from '../../../src/screen/ProfileScreen';
 import {Colors} from '../../../src/constants/theam';
 import {useSafeAreaInsets} from 'react-native-safe-area-context';
+import SearchScreen from '../../screen/SearchScreen';
 
 const Tab = createBottomTabNavigator();
 
 const TabArr = [
-  {
-    route: 'Profile',
-    label: 'Profile',
-    type: Icons.FontAwesome,
-    icon: 'user-circle-o',
-    component: ProfileScreen,
-    color: Colors.primary,
-  },
-  {
+   {
     route: 'Home',
     label: 'Home',
     type: Icons.Feather,
@@ -31,10 +24,27 @@ const TabArr = [
     headerShown: false,
   },
   {
-    route: 'Order',
-    label: 'Order',
-    type: Icons.Feather,
-    icon: 'file-text',
+    route: 'search',
+    label: 'Search',
+    type: Icons.SimpleLineIcons,
+    icon: 'magnifier',
+    component: SearchScreen,
+    color: Colors.primary,
+  },
+  {
+    route: 'Cart',
+    label: 'cart',
+    type: Icons.FontAwesome,
+    icon: 'shopping-cart',
+    component: ProfileScreen,
+    color: Colors.primary,
+  },
+ 
+  {
+    route: 'Account',
+    label: 'account',
+    type: Icons.FontAwesome,
+    icon: 'user-circle-o',
     component: OrderScreen,
     color: Colors.primary,
   },
@@ -117,15 +127,19 @@ const TabNavigator = () => {
         },
       }}>
       {TabArr.map((item, index) => (
-        <Tab.Screen
-          key={index}
-          name={item.route}
-          component={item.component}
-          options={{
-            tabBarShowLabel: false,
-            tabBarButton: props => <TabButton {...props} item={item} />,
-          }}
-        />
+       <Tab.Screen
+  key={index}
+  name={item.route}
+  component={item.component}
+  options={{
+    tabBarShowLabel: false,
+    tabBarButton: props => <TabButton {...props} item={item} />,
+    headerShown: item.route === 'search', 
+    headerTitle: item.route === 'search' ? 'Search' : '', 
+    headerTitleAlign: 'center', 
+  }}
+/>
+
       ))}
     </Tab.Navigator>
   );
