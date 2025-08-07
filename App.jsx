@@ -8,9 +8,12 @@ import OTPScreen from './src/screen/OTPScreen';
 
 import TabNavigator from './src/components/Layout/TabNavigator';
 import ProfileScreen from './src/screen/ProfileScreen';
-import OrderScreen from './src/screen/OrderScreen';
+import OrderScreen from './src/screen/AccountScreen';
 import ProductDetailScreen from './src/screen/ProductDetailScreen';
 import useStore from './src/store/store';
+import CheckoutScreen from './src/screen/CheckoutScreen';
+import OrderListScreen from './src/screen/OrderListScreen';
+import OrderDetailScreen from './src/screen/OrderDetailScreen';
 
 const Stack = createNativeStackNavigator();
 
@@ -22,49 +25,61 @@ function App() {
   }, []);
 
   return (
-      <NavigationContainer>
-        <Stack.Navigator>
-          {isAuth ? (
-            <>
-              <Stack.Screen
-                options={{headerShown: false}}
-                name="Login"
-                component={LoginScreen}
-              />
-              <Stack.Screen
-                options={{headerShown: false}}
-                name="OTP"
-                component={OTPScreen}
-              />
-            </>
-          ) : (
-            <>
-              <Stack.Screen
-                options={{headerShown: false}}
-                name="Tabs"
-                component={TabNavigator}
-              />
-              <Stack.Screen
-                name="Profile"
-                options={{headerShown: true}}
-                component={ProfileScreen}
-              />
+    <NavigationContainer>
+      <Stack.Navigator>
+        {isAuth ? (
+          <>
+            <Stack.Screen
+              options={{headerShown: false}}
+              name="Login"
+              component={LoginScreen}
+            />
+            <Stack.Screen
+              options={{headerShown: false}}
+              name="OTP"
+              component={OTPScreen}
+            />
+          </>
+        ) : (
+          <>
+            <Stack.Screen
+              options={{headerShown: false}}
+              name="Tabs"
+              component={TabNavigator}
+            />
+            <Stack.Screen
+              name="Profile"
+              options={{headerShown: true}}
+              component={ProfileScreen}
+            />
 
-              <Stack.Screen
-                name="product-detail"
-                options={{headerShown: true}}
-                component={ProductDetailScreen}
-              />
+            <Stack.Screen
+              name="product-detail"
+              options={{headerShown: true}}
+              component={ProductDetailScreen}
+            />
 
-              <Stack.Screen
-                name="order"
-                options={{headerShown: true}}
-                component={OrderScreen}
-              />
-            </>
-          )}
-        </Stack.Navigator>
-      </NavigationContainer>
+            <Stack.Screen
+              name="Orders"
+              options={{headerShown: true}}
+              component={OrderListScreen}
+            />
+
+            <Stack.Screen
+              name="OrderDetail"
+              options={{headerShown: true}}
+              component={OrderDetailScreen}
+            />
+
+            <Stack.Screen
+              name="Checkout"
+              options={{headerShown: true}}
+              component={CheckoutScreen}
+            />
+          </>
+        )}
+      </Stack.Navigator>
+    </NavigationContainer>
   );
 }
 

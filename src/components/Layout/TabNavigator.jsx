@@ -5,11 +5,12 @@ import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 
 import Icon, {Icons} from '../../../src/components/custom/Icons';
 import HomeScreen from '../../../src/screen/HomeScreen';
-import OrderScreen from '../../../src/screen/OrderScreen';
+import OrderScreen from '../../screen/AccountScreen';
 import ProfileScreen from '../../../src/screen/ProfileScreen';
 import {Colors} from '../../../src/constants/theam';
 import {useSafeAreaInsets} from 'react-native-safe-area-context';
 import SearchScreen from '../../screen/SearchScreen';
+import CartScreen from '../../screen/CartScreen';
 
 const Tab = createBottomTabNavigator();
 
@@ -24,7 +25,7 @@ const TabArr = [
     headerShown: false,
   },
   {
-    route: 'search',
+    route: 'Search',
     label: 'Search',
     type: Icons.SimpleLineIcons,
     icon: 'magnifier',
@@ -33,16 +34,16 @@ const TabArr = [
   },
   {
     route: 'Cart',
-    label: 'cart',
+    label: 'Cart',
     type: Icons.FontAwesome,
     icon: 'shopping-cart',
-    component: ProfileScreen,
+    component: CartScreen,
     color: Colors.primary,
   },
  
   {
     route: 'Account',
-    label: 'account',
+    label: 'Account',
     type: Icons.FontAwesome,
     icon: 'user-circle-o',
     component: OrderScreen,
@@ -134,8 +135,8 @@ const TabNavigator = () => {
   options={{
     tabBarShowLabel: false,
     tabBarButton: props => <TabButton {...props} item={item} />,
-    headerShown: item.route === 'search', 
-    headerTitle: item.route === 'search' ? 'Search' : '', 
+    headerShown: item.route !== 'Home', 
+    headerTitle: item.label , 
     headerTitleAlign: 'center', 
   }}
 />

@@ -90,7 +90,6 @@ const SearchScreen = () => {
         contentContainerStyle={styles.productList}
         columnWrapperStyle={{justifyContent: 'space-between'}}
         renderItem={({item}) => <ProductCard item={item} />}
-          ItemSeparatorComponent={() => <View style={{ height: 16 }} />} 
 
       />
     </View>
